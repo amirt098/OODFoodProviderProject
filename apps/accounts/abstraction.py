@@ -1,5 +1,5 @@
 import abc
-from data_classes import UserInfo, UserRole, AddressList
+from .data_classes import UserInfo, UserRole, AddressList
 
 
 class AbstractAccountService(abc.ABC):
@@ -43,7 +43,7 @@ class AbstractAccountService(abc.ABC):
     @abc.abstractmethod
     def modify_user(self, request: UserInfo) -> UserInfo:
         """
-        User can modify his account with this method.
+        User can modify his accounts with this method.
             Args:
                 request (UserInfo):
 

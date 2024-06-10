@@ -1,3 +1,4 @@
+import dataclasses
 from typing import List
 
 from pydantic import BaseModel, EmailStr, constr
@@ -5,20 +6,23 @@ from enum import Enum
 
 
 class UserRole(str, Enum):
-    ADMIN = "admin"
-    CONSUMER = "consumer"
-    PROVIDER_MANAGER = "provider_manager"
-    DRIVER = "driver"
+    ADMIN = "Admin"
+    CUSTOMER = "Customer"
+    PROVIDER_MANAGER = "Provider Manager"
+    DRIVER = "Driver"
 
 
-class UserClaim(BaseModel):
-    uid: int
+@dataclasses.dataclass
+class UserClaim:
+    id: int
+    uid: str
     username: str
     email: EmailStr
     role: UserRole
 
 
-class UserInfo(BaseModel):
+@dataclasses.dataclass
+class UserInfo:
     username: constr(min_length=1)
     password: constr(min_length=1)
     first_name: str
@@ -26,15 +30,11 @@ class UserInfo(BaseModel):
     email: EmailStr
     phone_number: str
     role: UserRole
-    uid: int = None
-
-
-class LoginData(BaseModel):
-    username: str
-    password: str
+    uid: int | None = None
 
 
 class AddressInfo(BaseModel):
+    uid: str
     title: str
     state: str
     city: str
