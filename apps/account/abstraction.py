@@ -63,7 +63,7 @@ class AbstractAccountService(abc.ABC):
         Raise:
            UIDNotFound : If the user uid is not found
         Return:
-            list[AddressInfo]: List of addresses
+            AddressList: List of addresses
         """
         raise NotImplementedError()
 
