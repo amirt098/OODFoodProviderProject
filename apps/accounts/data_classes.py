@@ -34,7 +34,8 @@ class UserInfo:
 
 
 class AddressInfo(BaseModel):
-    uid: str
+    uid: int
+    user_uid: int
     title: str
     state: str
     city: str

@@ -14,7 +14,7 @@ class UserRole(models.TextChoices):
 class User(AbstractBaseUser):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=20, choices=UserRole.choices, default=UserRole.CUSTOMER)
-    uid = models.CharField(unique=True, max_length=160)
+    uid = models.PositiveIntegerField(unique=True)
     username = models.CharField(unique=True, max_length=30)
     email = models.EmailField()
     is_active = models.BooleanField(default=True)
