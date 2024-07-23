@@ -16,7 +16,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def get_order(self, uid: int) -> OrderInfo:
+    def get_order(self, uid: str) -> OrderInfo:
         """
         Get an order by uid
         Args:
@@ -40,7 +40,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def change_state(self, uid: int, state: str) -> None:
+    def change_state(self, uid: str, state: str) -> None:
         """
         Change the state of an order
         Args:
@@ -54,7 +54,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def add_review(self, user_uid: int, order_uid: int, review: dict) -> None:
+    def add_review(self, user_uid: str, order_uid: str, review: dict) -> None:
         """
         Add a new review to an order
         Args:
@@ -69,7 +69,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def set_driver(self, order_uid: int, driver_uid: int) -> None:
+    def set_driver(self, order_uid: str, driver_uid: str) -> None:
         """
         Assign a driver to an order
         Args:
@@ -83,7 +83,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def get_items(self, uid: int) -> List[OrderItemInfo]:
+    def get_items(self, uid: str) -> List[OrderItemInfo]:
         """
         Get all items of an order
         Args:
@@ -96,7 +96,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def accept_order(self, uid: int) -> None:
+    def accept_order(self, uid: str) -> None:
         """
         Accept an order by provider
         Args:
@@ -109,7 +109,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def reject_order(self, uid: int) -> None:
+    def reject_order(self, uid: str) -> None:
         """
         Reject an order by provider
         Args:

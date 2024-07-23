@@ -1,15 +1,14 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
-# Create your models here.
-from django.db import models
+from helpers.model_mixins import TrackingTimeStampMixin
 from accounts.models import User
 from provider.models import Product, Provider
 from logistic.models import Driver
 
-from django.utils.translation import gettext as _
 
 # Create your models here.
-class Order(models.Model):
+class Order(TrackingTimeStampMixin):
 
     class OrderStates(models.TextChoices):
         waiting = ('W', _("Waiting for payment"),)
@@ -20,12 +19,9 @@ class Order(models.Model):
         delivered = ('D', _("Delivered"),)
 
 
-    uid = models.PositiveIntegerField(
+    uid = models.CharField(
+        _("Order UID"),
         unique=True
-    )
-
-    created_at = models.DateTimeField(
-        _('Created at'),
     )
 
     state = models.CharField(
@@ -53,6 +49,7 @@ class Order(models.Model):
         Driver,
         verbose_name=_("Driver"),
         related_name="orders",
+        null=True,
         on_delete=models.PROTECT
     )
 
@@ -97,24 +94,28 @@ class OrderItem(models.Model):
         return self.quantity * self.price
 
     
-class Review(models.Model):
-    uid = models.PositiveIntegerField(
+class Review(TrackingTimeStampMixin):
+    uid = models.CharField(
+        _("Review UID"),
         unique=True
     )
 
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
-        related_name="orders",
+        related_name="reviews",
+        on_delete=models.CASCADE
+    )
+
+    order = models.ForeignKey(
+        Order,
+        verbose_name=_("order"),
+        related_name="reviews",
         on_delete=models.CASCADE
     )
 
     reting = models.PositiveSmallIntegerField(
         _("Rating")
-    )
-
-    created_at = models.DateTimeField(
-        _('Created at')
     )
 
     message = models.CharField(
