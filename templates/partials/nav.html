@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'frontend-home' %}">Food Provider App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'frontend-home' %}"><i
+                            class="fad fa-home"></i> Home</a>
+                </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#"><i class='fad fa-store-alt'></i> Services</a>#}
+{#                </li>#}
+{#                {% if request.user.is_authenticated and request.session.is_agent %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'agent_management' %}"><i class='fad fa-user-cog'></i> Agent Management</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'assigned_ticket' %}"><i class='fa fa-file'></i> Assigned Tickets</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'un_assigned_ticket' %}"><i class='fa fa-file'></i>Un Assigned Tickets</a>#}
+{#                    </li>#}
+{#                {% endif %}#}
+{#                {% if request.user.is_authenticated %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'dashboard' %}"><i class='fad fa-tachometer-alt'></i> Dashboard</a>#}
+{#                    </li>#}
+{#                {% endif %}#}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'frontend-about' %}"><i class='fad fa-envelope-square'></i> About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'frontend-contact' %}"><i class='fad fa-envelope-square'></i> Contact us</a>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <a class="dropdown-toggle text-white text-decoration-none" href="#" id="navbarDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if request.user.is_authenticated %}
+                        {{ request.user.username }}
+                    {% else %}
+                        Welcome
+                    {% endif %}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+{#                   {% if request.user.is_authenticated %}#}
+{#                        <li><a class="dropdown-item" href="{% url 'profile' %}"><i class='fad fa-id-card me-2'></i> Profile</a></li>#}
+{#                        <li><a class="dropdown-item" href="#"><i class='fad fa-shipping-fast me-1'></i> Orders</a></li>#}
+{#                        <li><hr class="dropdown-divider"></li>#}
+{#                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class='fad fa-sign-out-alt me-2'></i> Logout</a></li>#}
+{#                    {% else %}#}
+{#                        <li><a class="dropdown-item" href="{% url 'login' %}"><i class='fad fa-id-card me-2'></i> Login</a></li>#}
+{#                        <li><a class="dropdown-item" href="{% url 'register_user' %}"><i class='fad fa-id-card me-2'></i> Register</a></li>#}
+{#                        <li><a class="dropdown-item" href="{% url 'register_organization' %}"><i class='fad fa-id-card me-2'></i> Register Organization</a></li>#}
+{#                    {% endif %} #}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
