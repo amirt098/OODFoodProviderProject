@@ -46,7 +46,7 @@ class CartItem(models.Model):
         related_name="cart_items"
     )
 
-    order = models.ForeignKey(
+    cart = models.ForeignKey(
         Cart,
         on_delete=models.CASCADE,
         related_name="cart_items"
@@ -56,13 +56,5 @@ class CartItem(models.Model):
         _("Quantity"),
         default=1
     )
-
-    price = models.PositiveBigIntegerField(
-        _("Sell Price"),
-    )
-
-    @property
-    def get_total_order_product_price(self):
-        return self.quantity * self.price
 
     
