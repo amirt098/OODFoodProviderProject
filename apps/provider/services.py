@@ -73,7 +73,15 @@ class ProviderService(AbstractProviderService):
         )
 
     def get_products(self, filter: ProductFilter) -> List[ProductInfo]:
-        return [self.get_product(product.uid) for product in Product.objects.filter(**filter)]
+        return [ProductInfo(
+            uid=product.uid,
+            title=product.title,
+            description=product.description,
+            is_active=product.is_active,
+            in_stock=product.in_stock,
+            image_path=product.image_path,
+            categoty_uid=product.categoty.uid,
+        ) for product in Product.objects.filter(**filter)]
     
     def create_category(self, category: CategoryInfo) -> None:
         category = Category.objects.create(

@@ -39,7 +39,15 @@ class OrderService(AbstractOrderService):
             orderitem.save()
 
     def get_orders(self, filters: OrderFilter) -> List[OrderInfo]:
-        return [self.get_order(order.uid) for order in Order.objects.filter(**filters)]
+        return [OrderInfo(
+            uid=order.uid,
+            user_uid=order.user.id,
+            provider_uid=order.provider.id,
+            created=order.created,
+            state=order.state,
+            footnote=order.footnote,
+            order_items=self.get_items(order.uid),
+        ) for order in Order.objects.filter(**filters)]
 
     def get_order(self, uid: str) -> OrderInfo:
         order = Order.objects.get(uid=uid)
