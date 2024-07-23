@@ -45,7 +45,7 @@ class AbstractAccountService(abc.ABC):
         """
         User can modify his accounts with this method.
             Args:
-                request (UserInfo):
+                request (UserInfo):+9
 
             Raise:
                 UIDNotFound

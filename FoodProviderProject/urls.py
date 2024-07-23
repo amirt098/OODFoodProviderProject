@@ -28,8 +28,13 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
 
 urlpatterns = [
-    path('', main_page_view, name='main_page'),
-    path('api/users/info/', UserViewSet.as_view({'get': 'user_info'}), name='user-info'),
+    # path('', main_page_view, name='main_page'),
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('', include('apps.frontend.urls')),
+    # path('cart/', include('cart.urls')),   # Cart app
+    # path('orders/', include('order.urls')), # Order app
+    # path('account/', include('account.urls')), # Account app
+    # path('provider/', include('provider.urls')), # Provider app
+    # path('driver/', include('driver.urls')),   # Driver app
+
 ]
