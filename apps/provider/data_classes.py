@@ -2,26 +2,26 @@ import dataclasses
 
 @dataclasses.dataclass
 class ProviderInfo:
-    uid: int | None = None
-    manager_uid: int
+    uid: str | None = None
+    manager_uid: str
     name: str
     is_available: bool
 
 @dataclasses.dataclass
 class ProductInfo:
-    uid: int | None = None
+    uid: str | None = None
     title: str
     description: str
     is_active: bool
     in_stock: int
     image_path: str
-    categoty_uid: int
+    categoty_uid: str
 
 @dataclasses.dataclass
 class CategoryInfo:
-    uid: int | None = None
+    uid: str | None = None
     title: str
-    parent_category_uid: int
+    parent_category_uid: str
 
 @dataclasses.dataclass
 class ProductFilter:

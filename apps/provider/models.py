@@ -5,7 +5,8 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class Provider(models.Model):
-    uid = models.PositiveIntegerField(
+    uid = models.CharField(
+        _("Provider UID"),
         unique=True
     )
 
@@ -28,7 +29,8 @@ class Provider(models.Model):
 
 
 class Category(models.Model):
-    uid = models.PositiveIntegerField(
+    uid = models.CharField(
+        _("Category UID"),
         unique=True
     )
 
@@ -48,7 +50,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    uid = models.PositiveIntegerField(
+    uid = models.CharField(
+        _("Product UID"),
         unique=True
     )
 
