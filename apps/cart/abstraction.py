@@ -3,7 +3,7 @@ from typing import List
 
 from .data_classes import CartInfo
 
-class AbstractAccountService(abc.ABC):
+class AbstractCartService(abc.ABC):
     @abc.abstractmethod
     def get_cart(self, uid: int) -> CartInfo:
         """
