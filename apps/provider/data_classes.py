@@ -3,10 +3,10 @@ import dataclasses
 
 @dataclasses.dataclass
 class ProviderInfo:
-    manager_uid: int
+    manager_uid: str
     name: str
     is_available: bool
-    uid: int | None = None
+    uid: str | None = None
 
 
 @dataclasses.dataclass
@@ -16,16 +16,15 @@ class ProductInfo:
     is_active: bool
     in_stock: int
     image_path: str
-    categoty_uid: int
-    uid: int | None = None
+    categoty_uid: str
+    # uid: int | None = None
 
 
 @dataclasses.dataclass
 class CategoryInfo:
     title: str
-    parent_category_uid: int
-    uid: int | None = None
-
+    parent_category_uid: str
+    uid: str | None = None
 
 @dataclasses.dataclass
 class ProductFilter:

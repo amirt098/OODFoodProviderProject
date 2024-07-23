@@ -105,3 +105,16 @@ class AbstractUserService(abc.ABC):
             UserRole: Role of the user
         """
         raise NotImplementedError()
+    
+    @abc.abstractmethod
+    def get_user_id(self, uid: str) -> int:
+        """
+        Get database id of the user (only for foreign keys)
+        Args:
+            uid (str): uid of the user
+        Raise:
+           UIDNotFound : If the user uid is not found
+        Return:
+            int : database id of the user
+        """
+        raise NotImplementedError()

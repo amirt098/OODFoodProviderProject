@@ -4,11 +4,11 @@ from .data_classes import DriverInfo, DriverList, DriverFilter
 
 class AbstractDriverService(abc.ABC):
     @abc.abstractmethod
-    def get_driver(self, uid: int) -> DriverInfo:
+    def get_driver(self, uid: str) -> DriverInfo:
         """
         Get driver information
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -39,11 +39,11 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def update_location(self, uid: int, location: str):
+    def update_location(self, uid: str, location: str):
         """
         Update driver location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
             location (int): new location of driver
         Raise:
            UIDNotFound : If the driver uid is not found
@@ -53,11 +53,11 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def update_paycheck(self, uid: int):
+    def update_paycheck(self, uid: str):
         """
         Update driver last peycheck.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -66,11 +66,11 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def get_balance(self, uid: int) -> int:
+    def get_balance(self, uid: str) -> int:
         """
         Get driver current balance.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -79,11 +79,11 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def get_location(self, uid: int) -> str:
+    def get_location(self, uid: str) -> str:
         """
         Get driver current location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -92,11 +92,11 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def update_availability(self, uid: int, is_available: bool):
+    def update_availability(self, uid: str, is_available: bool):
         """
         Get driver current location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
             is_available (bool): new availability status
         Raise:
            UIDNotFound : If the driver uid is not found
@@ -110,7 +110,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get driver current location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
             is_available (bool): new availability status
         Raise:
            UIDNotFound : If the driver uid is not found

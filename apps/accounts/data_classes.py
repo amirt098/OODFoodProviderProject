@@ -30,12 +30,12 @@ class UserInfo:
     email: EmailStr
     phone_number: str
     role: UserRole
-    uid: int | None = None
+    uid: str | None = None
 
 
 class AddressInfo(BaseModel):
-    uid: int
-    user_uid: int
+    uid: str
+    user_uid: str
     title: str
     state: str
     city: str

@@ -5,7 +5,10 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class Driver(models.Model):
-    uid = models.CharField(unique=True, max_length=160)
+    uid = models.CharField(
+        _("Druver UID"),
+        unique=True,
+    )
 
     user = models.OneToOneField(
         User, 

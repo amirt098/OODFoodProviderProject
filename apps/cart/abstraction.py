@@ -5,11 +5,11 @@ from .data_classes import CartInfo
 
 class AbstractCartService(abc.ABC):
     @abc.abstractmethod
-    def get_cart(self, uid: int) -> CartInfo:
+    def get_cart(self, uid: str) -> CartInfo:
         """
         Get a cart by uid.
         Args:
-            uid (int): uid of the cart
+            uid (str): uid of the cart
         Raise:
            UIDNotFound : If the cart uid is not found
         Return:
@@ -18,11 +18,11 @@ class AbstractCartService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def get_carts(self, uid: int) -> List[CartInfo]:
+    def get_carts(self, user_uid: str) -> List[CartInfo]:
         """
         Get all cart belonging to the user
         Args:
-            uid (int): uid of the user
+            user_uid (str): uid of the user
         Raise:
            UIDNotFound : If the user uid is not found
         Return:
@@ -31,12 +31,12 @@ class AbstractCartService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def add_to_cart(self, cart_uid: int, product_uid: int) -> None:
+    def add_to_cart(self, cart_uid: str, product_uid: str) -> None:
         """
         Add a product to a cart
         Args:
-            cart_uid (int): uid of the cart
-            product_uid (int): uid of the product
+            cart_uid (str): uid of the cart
+            product_uid (str): uid of the product
         Raise:
            UIDNotFound : If the cart or product uid is not found
         Return:
@@ -45,12 +45,12 @@ class AbstractCartService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def delete_from_cart(self, cart_uid: int, product_uid: int) -> None:
+    def delete_from_cart(self, cart_uid: str, product_uid: str) -> None:
         """
         Delete a product to a cart
         Args:
-            cart_uid (int): uid of the cart
-            product_uid (int): uid of the product
+            cart_uid (str): uid of the cart
+            product_uid (str): uid of the product
         Raise:
            UIDNotFound : If the cart or product uid is not found
         Return:
@@ -59,12 +59,12 @@ class AbstractCartService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def update_quantity(self, cart_uid: int, product_uid: int, quantity: int) -> None:
+    def update_quantity(self, cart_uid: str, product_uid: str, quantity: int) -> None:
         """
         Update a product quantity in a cart
         Args:
-            cart_uid (int): uid of the cart
-            product_uid (int): uid of the product
+            cart_uid (str): uid of the cart
+            product_uid (str): uid of the product
             quantity (int): new quantity of the product
         Raise:
            UIDNotFound : If the cart or product uid is not found

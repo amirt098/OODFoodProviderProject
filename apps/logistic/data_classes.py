@@ -6,12 +6,12 @@ from pydantic import BaseModel
 
 @dataclasses.dataclass
 class DriverInfo:
-    user_uid: int
     plate_number: str
     location: str
     is_available: bool
     last_paycheck: int
-    uid: int | None = None
+    user_uid: str
+    uid: str | None = None
 
 
 @dataclasses.dataclass

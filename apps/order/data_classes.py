@@ -5,24 +5,25 @@ from xmlrpc.client import DateTime
 
 @dataclasses.dataclass
 class OrderFilter:
-    user__uid: int
+    user__uid: str
     state: str
-    created_at__lte: int
-    created_at__gte: int
-    provider__uid: int
-    driver__uid: int
+    created__lte: int
+    created__gte: int
+    provider__uid: str
+    driver__uid: str
 
 @dataclasses.dataclass
 class OrderItemInfo:
-    product_uid: int
+    product_uid: str
     price: int
     quantity: int
 
 @dataclasses.dataclass
 class OrderInfo:
-    uid: int
-    user_uid: int
-    created_at: DateTime
+    uid: str
+    user_uid: str
+    provider_uid: str
+    created: DateTime
     state: str
     footnote: str
     order_items: List[OrderItemInfo]
