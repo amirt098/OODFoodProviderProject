@@ -6,8 +6,8 @@ from pydantic import BaseModel
 
 @dataclasses.dataclass
 class DriverInfo:
-    uid: int | None = None
-    user_uid: int
+    uid: str | None = None
+    user_uid: str
     plate_number: str
     location: str
     is_available: bool

@@ -4,7 +4,7 @@ from .data_classes import DriverInfo, DriverList, DriverFilter
 
 class AbstractDriverService(abc.ABC):
     @abc.abstractmethod
-    def get_driver(self, uid: int) -> DriverInfo:
+    def get_driver(self, uid: str) -> DriverInfo:
         """
         Get driver information
         Args:
@@ -39,7 +39,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def update_location(self, uid: int, location: str):
+    def update_location(self, uid: str, location: str):
         """
         Update driver location.
         Args:
@@ -53,7 +53,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def update_paycheck(self, uid: int):
+    def update_paycheck(self, uid: str):
         """
         Update driver last peycheck.
         Args:
@@ -66,7 +66,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def get_balance(self, uid: int) -> int:
+    def get_balance(self, uid: str) -> int:
         """
         Get driver current balance.
         Args:
@@ -79,7 +79,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def get_location(self, uid: int) -> str:
+    def get_location(self, uid: str) -> str:
         """
         Get driver current location.
         Args:
@@ -92,7 +92,7 @@ class AbstractDriverService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def update_availability(self, uid: int, is_available: bool):
+    def update_availability(self, uid: str, is_available: bool):
         """
         Get driver current location.
         Args:

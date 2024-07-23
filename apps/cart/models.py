@@ -6,7 +6,8 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class Cart(models.Model):
-    uid = models.PositiveIntegerField(
+    uid = models.CharField(
+        _("Cart UID"),
         unique=True
     )
 

@@ -5,7 +5,7 @@ from .data_classes import CartInfo
 
 class AbstractAccountService(abc.ABC):
     @abc.abstractmethod
-    def get_cart(self, uid: int) -> CartInfo:
+    def get_cart(self, uid: str) -> CartInfo:
         """
         Get a cart by uid.
         Args:
@@ -18,7 +18,7 @@ class AbstractAccountService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def get_carts(self, uid: int) -> List[CartInfo]:
+    def get_carts(self, uid: str) -> List[CartInfo]:
         """
         Get all cart belonging to the user
         Args:
@@ -31,7 +31,7 @@ class AbstractAccountService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def add_to_cart(self, cart_uid: int, product_uid: int) -> None:
+    def add_to_cart(self, cart_uid: str, product_uid: str) -> None:
         """
         Add a product to a cart
         Args:
@@ -45,7 +45,7 @@ class AbstractAccountService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def delete_from_cart(self, cart_uid: int, product_uid: int) -> None:
+    def delete_from_cart(self, cart_uid: str, product_uid: str) -> None:
         """
         Delete a product to a cart
         Args:
@@ -59,7 +59,7 @@ class AbstractAccountService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def update_quantity(self, cart_uid: int, product_uid: int, quantity: int) -> None:
+    def update_quantity(self, cart_uid: str, product_uid: str, quantity: int) -> None:
         """
         Update a product quantity in a cart
         Args:

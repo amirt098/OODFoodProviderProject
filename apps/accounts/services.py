@@ -107,3 +107,6 @@ class AccountService(AbstractAccountService):
             return user.role
         except User.DoesNotExist:
             raise UIDNotFound()
+        
+    def get_user_id(self, uid: str):
+        return User.objects.get(uid=uid).id
