@@ -8,7 +8,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get driver information
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -43,7 +43,7 @@ class AbstractDriverService(abc.ABC):
         """
         Update driver location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
             location (int): new location of driver
         Raise:
            UIDNotFound : If the driver uid is not found
@@ -57,7 +57,7 @@ class AbstractDriverService(abc.ABC):
         """
         Update driver last peycheck.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -70,7 +70,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get driver current balance.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -83,7 +83,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get driver current location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
         Raise:
            UIDNotFound : If the driver uid is not found
         Return:
@@ -96,7 +96,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get driver current location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
             is_available (bool): new availability status
         Raise:
            UIDNotFound : If the driver uid is not found
@@ -110,7 +110,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get driver current location.
         Args:
-            uid (int): uid of the driver
+            uid (str): uid of the driver
             is_available (bool): new availability status
         Raise:
            UIDNotFound : If the driver uid is not found

@@ -20,7 +20,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get an order by uid
         Args:
-            uid (int): uid of the order
+            uid (str): uid of the order
         Raise:
            UIDNotFound : If the order uid is not found
         Return:
@@ -44,7 +44,7 @@ class AbstractDriverService(abc.ABC):
         """
         Change the state of an order
         Args:
-            uid (int): uid of the order
+            uid (str): uid of the order
             state (str): new state to be assigned
         Raise:
            UIDNotFound : If the order uid is not found
@@ -58,8 +58,8 @@ class AbstractDriverService(abc.ABC):
         """
         Add a new review to an order
         Args:
-            user_uid (int): uid of the user
-            order_uid (int): uid of the order
+            user_uid (str): uid of the user
+            order_uid (str): uid of the order
             review (dict): review to be added
         Raise:
            UIDNotFound : If the user or order uid is not found
@@ -73,8 +73,8 @@ class AbstractDriverService(abc.ABC):
         """
         Assign a driver to an order
         Args:
-            order_uid (int): uid of the order
-            driver_uid (int): uid of the driver
+            order_uid (str): uid of the order
+            driver_uid (str): uid of the driver
         Raise:
            UIDNotFound : If the order or driver uid is not found
         Return:
@@ -87,7 +87,7 @@ class AbstractDriverService(abc.ABC):
         """
         Get all items of an order
         Args:
-            uid (int): uid of the order
+            uid (str): uid of the order
         Raise:
            UIDNotFound : If the order uid is not found
         Return:
@@ -100,7 +100,7 @@ class AbstractDriverService(abc.ABC):
         """
         Accept an order by provider
         Args:
-            uid (int): uid of the order
+            uid (str): uid of the order
         Raise:
            UIDNotFound : If the order uid is not found
         Return:
@@ -113,7 +113,7 @@ class AbstractDriverService(abc.ABC):
         """
         Reject an order by provider
         Args:
-            uid (int): uid of the order
+            uid (str): uid of the order
         Raise:
            UIDNotFound : If the order uid is not found
         Return:

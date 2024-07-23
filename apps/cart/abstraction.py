@@ -9,7 +9,7 @@ class AbstractCartService(abc.ABC):
         """
         Get a cart by uid.
         Args:
-            uid (int): uid of the cart
+            uid (str): uid of the cart
         Raise:
            UIDNotFound : If the cart uid is not found
         Return:
@@ -18,11 +18,11 @@ class AbstractCartService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def get_carts(self, uid: str) -> List[CartInfo]:
+    def get_carts(self, user_uid: str) -> List[CartInfo]:
         """
         Get all cart belonging to the user
         Args:
-            uid (int): uid of the user
+            user_uid (str): uid of the user
         Raise:
            UIDNotFound : If the user uid is not found
         Return:
@@ -35,8 +35,8 @@ class AbstractCartService(abc.ABC):
         """
         Add a product to a cart
         Args:
-            cart_uid (int): uid of the cart
-            product_uid (int): uid of the product
+            cart_uid (str): uid of the cart
+            product_uid (str): uid of the product
         Raise:
            UIDNotFound : If the cart or product uid is not found
         Return:
@@ -49,8 +49,8 @@ class AbstractCartService(abc.ABC):
         """
         Delete a product to a cart
         Args:
-            cart_uid (int): uid of the cart
-            product_uid (int): uid of the product
+            cart_uid (str): uid of the cart
+            product_uid (str): uid of the product
         Raise:
            UIDNotFound : If the cart or product uid is not found
         Return:
@@ -63,8 +63,8 @@ class AbstractCartService(abc.ABC):
         """
         Update a product quantity in a cart
         Args:
-            cart_uid (int): uid of the cart
-            product_uid (int): uid of the product
+            cart_uid (str): uid of the cart
+            product_uid (str): uid of the product
             quantity (int): new quantity of the product
         Raise:
            UIDNotFound : If the cart or product uid is not found

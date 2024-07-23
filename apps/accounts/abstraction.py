@@ -111,7 +111,7 @@ class AbstractAccountService(abc.ABC):
         """
         Get database id of the user (only for foreign keys)
         Args:
-            uid (int): uid of the user
+            uid (str): uid of the user
         Raise:
            UIDNotFound : If the user uid is not found
         Return:

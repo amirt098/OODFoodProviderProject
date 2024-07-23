@@ -9,7 +9,7 @@ class AbstractProviderService(abc.ABC):
         """
         Get database id of the provider (only for foreign keys)
         Args:
-            uid (int): uid of the provider
+            uid (str): uid of the provider
         Raise:
            UIDNotFound : If the provider uid is not found
         Return:
@@ -22,7 +22,7 @@ class AbstractProviderService(abc.ABC):
         """
         Get database id of the product (only for foreign keys)
         Args:
-            uid (int): uid of the product
+            uid (str): uid of the product
         Raise:
            UIDNotFound : If the product uid is not found
         Return:
@@ -35,7 +35,7 @@ class AbstractProviderService(abc.ABC):
         """
         Set provider status to open
         Args:
-            uid (int): uid of the provider
+            uid (str): uid of the provider
         Raise:
            UIDNotFound : If the provider uid is not found
         Return:
@@ -48,7 +48,7 @@ class AbstractProviderService(abc.ABC):
         """
         Set provider status to closed
         Args:
-            uid (int): uid of the provider
+            uid (str): uid of the provider
         Raise:
            UIDNotFound : If the provider uid is not found
         Return:
@@ -61,7 +61,7 @@ class AbstractProviderService(abc.ABC):
         """
         Add a product to provider menu
         Args:
-            provider_uid (int): uid of the provider
+            provider_uid (str): uid of the provider
             product (ProductInfo): Product information
         Raise:
            UIDNotFound : If the provider uid is not found
@@ -75,7 +75,7 @@ class AbstractProviderService(abc.ABC):
         """
         Disable a product
         Args:
-            uid (int): uid of the product
+            uid (str): uid of the product
         Raise:
            UIDNotFound : If the product uid is not found
         Return:
@@ -88,7 +88,7 @@ class AbstractProviderService(abc.ABC):
         """
         Update a product price
         Args:
-            uid (int): uid of the product
+            uid (str): uid of the product
             price (int): new price of the product
         Raise:
            UIDNotFound : If the product uid is not found
@@ -102,7 +102,7 @@ class AbstractProviderService(abc.ABC):
         """
         Update a product stock
         Args:
-            uid (int): uid of the product
+            uid (str): uid of the product
             stock (int): new stock of the product
         Raise:
            UIDNotFound : If the product uid is not found
@@ -116,7 +116,7 @@ class AbstractProviderService(abc.ABC):
         """
         Get a products information
         Args:
-            uid (int): uid of the product
+            uid (str): uid of the product
         Raise:
            UIDNotFound : If the product uid is not found
         Return:
