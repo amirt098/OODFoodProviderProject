@@ -21,11 +21,7 @@ from django.urls import path
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from apps.accounts.views import UserViewSet
-from apps.accounts.views import main_page_view
 
-router = DefaultRouter()
-router.register(r'users', UserViewSet, basename='user')
 
 urlpatterns = [
     # path('', main_page_view, name='main_page'),
@@ -33,7 +29,7 @@ urlpatterns = [
     path('', include('apps.frontend.urls')),
     # path('cart/', include('cart.urls')),   # Cart app
     # path('orders/', include('order.urls')), # Order app
-    # path('account/', include('account.urls')), # Account app
+    path('account/', include('apps.accounts.urls')), # Account app
     # path('provider/', include('provider.urls')), # Provider app
     # path('driver/', include('driver.urls')),   # Driver app
 

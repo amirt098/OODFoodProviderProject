@@ -3,7 +3,7 @@ from typing import List
 from .data_classes import OrderInfo, OrderFilter, OrderItemInfo
 
 
-class AbstractDriverService(abc.ABC):
+class AbstractOrderService(abc.ABC):
     @abc.abstractmethod
     def create_order(self, order: OrderInfo) -> None:
         """

@@ -2,7 +2,7 @@ import abc
 from .data_classes import UserInfo, UserRole, AddressList
 
 
-class AbstractAccountService(abc.ABC):
+class AbstractUserService(abc.ABC):
     @abc.abstractmethod
     def login(self,
               username: str,

@@ -20,8 +20,10 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=
-                                 30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
+
+    USERNAME_FIELD = 'username'
+
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addresses')

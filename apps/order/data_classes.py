@@ -1,5 +1,6 @@
 import dataclasses
-from typing import List, DateTime
+from typing import List
+from xmlrpc.client import DateTime
 
 
 @dataclasses.dataclass
