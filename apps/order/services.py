@@ -21,7 +21,7 @@ class OrderService(AbstractOrderService):
     provider_service = ProviderService()
     
     def create_order(self, orderinfo: OrderInfo) : # -> Order
-        order = Order(
+        order = Order.objects.create(
             uid=orderinfo.uid,
             state=orderinfo.state,
             footnote=orderinfo.footnote,
@@ -30,7 +30,7 @@ class OrderService(AbstractOrderService):
         )
         order.save()
         for item in orderinfo.order_items:
-            orderitem = OrderItem(
+            orderitem = OrderItem.objects.create(
                 order=order,
                 product_id=self.provider_service.get_product_id(uid=item.product_uid),
                 price=item.price,

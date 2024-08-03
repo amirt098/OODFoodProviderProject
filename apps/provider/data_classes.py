@@ -32,3 +32,4 @@ class ProductFilter:
     category: int
     price__gte: int
     price__lte: int
+    provider__uid: str
