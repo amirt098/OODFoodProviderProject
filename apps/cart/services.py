@@ -34,7 +34,15 @@ class CartService(AbstractCartService):
             quantity=1,
         )
         item.save()
+        return
 
     def delete_from_cart(self, cart_uid: str, product_uid: str) -> None:
-        return super().delete_from_cart(cart_uid, product_uid)
-        
+        CartItem.objects.get(product__uid=product_uid, cart__uid=cart_uid).delete()
+        return
+    
+    def update_quantity(self, cart_uid: str, product_uid: str, quantity: int) -> None:
+        item = CartItem.objects.get(product__uid=product_uid, cart__uid=cart_uid)
+        item.quantity = quantity
+        item.save()
+        return
+
