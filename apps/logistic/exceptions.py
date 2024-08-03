@@ -1,3 +1,4 @@
 class UIDNotFound(Exception):
-    def __init__(self):
-        super().__init__("Driver with this UID was not found")
+    pass
+    # def __init__(self):
+    #     super().__init__("Driver with this UID was not found")

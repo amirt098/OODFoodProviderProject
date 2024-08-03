@@ -1,5 +1,6 @@
 /* static/css/style.css */
 body {
+    display: flex;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -15,9 +16,8 @@ body {
 }
 
 header {
-    background-color: #369f82;
+    background-color: #3db694;
     color: #151414;
-    padding: 0.2em 0;
 }
 
 nav ul {
@@ -39,6 +39,10 @@ nav ul li a {
 
 main {
     padding: 1em;
+}
+
+header, footer {
+    flex-shrink: 0;
 }
 
 footer {

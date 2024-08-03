@@ -26,7 +26,7 @@ from rest_framework.routers import DefaultRouter
 urlpatterns = [
     # path('', main_page_view, name='main_page'),
     path('admin/', admin.site.urls),
-    path('', include('apps.frontend.urls')),
+    path('', include('frontend.urls')),
     # path('cart/', include('cart.urls')),   # Cart app
     # path('orders/', include('order.urls')), # Order app
     path('account/', include('apps.accounts.urls')), # Account app

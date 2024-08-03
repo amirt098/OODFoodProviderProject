@@ -5,15 +5,22 @@ from .data_classes import UserInfo, UserRole, AddressList, AddressInfo, UserClai
 from .models import User, Address
 from .exceptions import UsernameNotFound, PasswordNotFound, UIDNotFound
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login, logout
 from typing import List
+from utils.decorators import class_method_logging_decorator
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class UserService(AbstractUserService):
-    def login(self, username: str, password: str) -> UserClaim:
+
+    @class_method_logging_decorator
+    def login(self, request,  username: str, password: str) -> UserClaim:
         try:
-            user = get_user_model().objects.get(username=username)
+            user = User.objects.get(username=username)
             if check_password(password, user.password):
+                logger.info(f"Logged in as {user.username}")
                 user_claim = UserClaim(
                     uid=user.uid,
                     username=user.username,
@@ -21,16 +28,19 @@ class UserService(AbstractUserService):
                     role=user.role,
                     id=user.id
                 )
-                return user_claim
+                return user
             else:
+                logger.info('invalid username or password')
                 raise PasswordNotFound()
         except get_user_model().DoesNotExist:
+            logger.info('invalid username')
             raise UsernameNotFound()
 
+    @class_method_logging_decorator
     def logout(self, request):
-        if request.user.is_authenticated:
-            request.session.flush()
+        logout(request)
 
+    @class_method_logging_decorator
     def register_user(self, request: UserInfo) -> UserInfo:
         if User.objects.filter(username=request.username).exists():
             raise ValueError("Username already exists")
@@ -48,8 +58,10 @@ class UserService(AbstractUserService):
         user.save()
         return request
 
-    def modify_user(self, request: UserInfo, current_user: UserClaim) -> UserInfo:
-        if request.uid != current_user.uid:
+    @class_method_logging_decorator
+    def modify_user(self, request: UserInfo, current_user: str) -> UserInfo:
+        logger.info(f"Modifying user {current_user}")
+        if request.uid != current_user:
             raise PermissionError("You can only modify your own account.")
         try:
             user = User.objects.get(uid=request.uid)
@@ -66,6 +78,7 @@ class UserService(AbstractUserService):
         except User.DoesNotExist:
             raise UIDNotFound()
 
+    @class_method_logging_decorator
     def get_addresses(self, username: str) -> AddressList:
         try:
             user = User.objects.get(username=username)
@@ -86,6 +99,7 @@ class UserService(AbstractUserService):
         except User.DoesNotExist:
             raise UIDNotFound()
 
+    @class_method_logging_decorator
     def get_info(self, username: str) -> UserInfo:
         try:
             user = User.objects.get(username=username)
@@ -102,6 +116,7 @@ class UserService(AbstractUserService):
         except User.DoesNotExist:
             raise UIDNotFound()
 
+    @class_method_logging_decorator
     def get_full_name(self, username: str) -> str:
         try:
             user = User.objects.get(username=username)
@@ -109,12 +124,13 @@ class UserService(AbstractUserService):
         except User.DoesNotExist:
             raise UIDNotFound()
 
+    @class_method_logging_decorator
     def get_role(self, username: str) -> UserRole:
         try:
             user = User.objects.get(username=username)
             return user.role
         except User.DoesNotExist:
             raise UIDNotFound()
-        
+
     def get_user_id(self, uid: str):
         return User.objects.get(uid=uid).id

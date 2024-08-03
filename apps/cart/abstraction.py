@@ -31,12 +31,13 @@ class AbstractCartService(abc.ABC):
         raise NotImplementedError()
     
     @abc.abstractmethod
-    def add_to_cart(self, cart_uid: str, product_uid: str) -> None:
+    def add_to_cart(self, cart_uid: str, product_uid: str, user_uid: str) -> None:
         """
         Add a product to a cart
         Args:
             cart_uid (str): uid of the cart
             product_uid (str): uid of the product
+            user_uid (str): uid of the user
         Raise:
            UIDNotFound : If the cart or product uid is not found
         Return:

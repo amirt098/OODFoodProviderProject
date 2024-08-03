@@ -5,11 +5,13 @@ from .data_classes import UserInfo, UserRole, AddressList
 class AbstractUserService(abc.ABC):
     @abc.abstractmethod
     def login(self,
+              request,
               username: str,
               password: str):
         """
         User can log in using this method.
         Args:
+            request: Request object
             username (str): Username of user
             password (str): <PASSWORD>
         Raise:
@@ -21,9 +23,11 @@ class AbstractUserService(abc.ABC):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def logout(self):
+    def logout(self, request):
         """
         User can log out via this method.
+        ARGS:
+            request: Request object
         Return:
             None
         """
@@ -41,11 +45,12 @@ class AbstractUserService(abc.ABC):
         """
 
     @abc.abstractmethod
-    def modify_user(self, request: UserInfo) -> UserInfo:
+    def modify_user(self, request: UserInfo, current_user: str) -> UserInfo:
         """
         User can modify his accounts with this method.
             Args:
-                request (UserInfo):+9
+                current_user (str): Current user uid
+                request (UserInfo): New user information
 
             Raise:
                 UIDNotFound

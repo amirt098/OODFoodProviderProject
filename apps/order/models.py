@@ -2,9 +2,9 @@ from django.db import models
 from django.utils.translation import gettext as _
 
 from helpers.model_mixins import TrackingTimeStampMixin
-from accounts.models import User
-from provider.models import Product, Provider
-from logistic.models import Driver
+from apps.accounts.models import User
+from apps.provider.models import Product, Provider
+from apps.logistic.models import Driver
 
 
 # Create your models here.

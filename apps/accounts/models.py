@@ -1,10 +1,10 @@
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 from django.utils.translation import gettext as _
 
-from helpers.model_mixins import TrackingTimeStampMixin
 
-class UserRole(models.TextChoices, TrackingTimeStampMixin):
+class UserRole(models.TextChoices):
     ADMIN = 'ADMIN', 'Admin'
     CUSTOMER = 'CUSTOMER', 'Customer'
     DRIVER = 'DRIVER', 'Driver'
@@ -14,11 +14,12 @@ class UserRole(models.TextChoices, TrackingTimeStampMixin):
 class User(AbstractBaseUser):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=20, choices=UserRole.choices, default=UserRole.CUSTOMER)
-    uid = models.CharField(unique=True)
+    uid = models.CharField(unique=True, max_length=120)
     username = models.CharField(unique=True, max_length=30)
     email = models.EmailField()
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    created_at = models.BigIntegerField(blank=True, null=True)
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True)
 

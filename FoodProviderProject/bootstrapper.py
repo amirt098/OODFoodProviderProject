@@ -30,6 +30,7 @@ class Bootstrapper(Borg):
             kwargs = {}
         Borg.__init__(self)
         if not hasattr(self, '_initialized'):  # Only initialize once
+
             logger.debug(f'kwargs:{kwargs}')
 
             self._accounts_service = kwargs.get(
@@ -37,7 +38,8 @@ class Bootstrapper(Borg):
                 UserService()
             )
 
-            self._cart_service = kwargs.get('cart_service', None)
+            self._cart_service = kwargs.get('cart_service',
+                                            None)
             self._orders_service = kwargs.get('orders_service', None)
             self._logins_service = kwargs.get('logins_service', None)
             self._provider_service = kwargs.get('provider_service', None)
