@@ -1,6 +1,7 @@
+from audioop import reverse
+
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.views import View
 from rest_framework import viewsets, status
 from rest_framework.response import Response

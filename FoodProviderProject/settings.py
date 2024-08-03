@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yd%mdi#m98nn!h*9&wub8(99=(cu(bqenw0%n5@1#+l)!men%_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,13 +56,21 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': (
 #         'rest_framework.authentication.SessionAuthentication',
 #         'rest_framework.authentication.BasicAuthentication',
 #     ),
 # }
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://oodfood.ir',
+    'https://oodfood.ir',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+
 
 ROOT_URLCONF = 'FoodProviderProject.urls'
 

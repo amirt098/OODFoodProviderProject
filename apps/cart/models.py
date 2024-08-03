@@ -4,8 +4,6 @@ from apps.provider.models import Provider, Product
 
 from django.utils.translation import gettext as _
 
-# Create your models here.
-
 
 class CartItem(models.Model):
     product = models.ForeignKey(

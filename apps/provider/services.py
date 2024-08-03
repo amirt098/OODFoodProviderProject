@@ -12,6 +12,7 @@ from apps.provider.data_classes import (
     ProductFilter,
 )
 
+
 class ProviderService(AbstractProviderService):
 
     def get_provider_id(self, uid: str):

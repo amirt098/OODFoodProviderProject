@@ -1,5 +1,6 @@
 from typing import List
 
+from apps.logistic.models import Driver
 from apps.order.abstraction import AbstractOrderService
 from apps.order.models import (
     Order,
@@ -20,7 +21,7 @@ class OrderService(AbstractOrderService):
     account_service = AccountService()
     provider_service = ProviderService()
     
-    def create_order(self, orderinfo: OrderInfo) : # -> Order
+    def create_order(self, orderinfo: OrderInfo):  # -> Order
         order = Order.objects.create(
             uid=orderinfo.uid,
             state=orderinfo.state,

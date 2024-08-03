@@ -23,28 +23,24 @@ class Order(TrackingTimeStampMixin):
         _("Order UID"),
         unique=True
     )
-
     state = models.CharField(
         _("Status"),
         max_length=1,
         choices=OrderStates.choices,
         default=OrderStates.waiting,
     )
-
     footnote = models.TextField(
         _("Footnote"),
         help_text=_("any additional info needed by admins"),
         null =True,
         blank=True
     )
-
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
         related_name="orders",
         on_delete=models.PROTECT
     )
-
     driver = models.ForeignKey(
         Driver,
         verbose_name=_("Driver"),
@@ -52,14 +48,12 @@ class Order(TrackingTimeStampMixin):
         null=True,
         on_delete=models.PROTECT
     )
-
     provider = models.ForeignKey(
         Provider,
         verbose_name=_("Provider"),
         related_name="orders",
         on_delete=models.PROTECT
     )
-
     products = models.ManyToManyField(
         Product,
         verbose_name=_("Products"),
@@ -73,7 +67,6 @@ class OrderItem(models.Model):
         on_delete=models.CASCADE,
         related_name="order_items"
     )
-
     order = models.ForeignKey(
         Order,
         on_delete=models.CASCADE,
@@ -99,30 +92,25 @@ class Review(TrackingTimeStampMixin):
         _("Review UID"),
         unique=True
     )
-
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
         related_name="reviews",
         on_delete=models.CASCADE
     )
-
     order = models.ForeignKey(
         Order,
         verbose_name=_("order"),
         related_name="reviews",
         on_delete=models.CASCADE
     )
-
-    reting = models.PositiveSmallIntegerField(
+    rating = models.PositiveSmallIntegerField(
         _("Rating")
     )
-
     message = models.CharField(
         _("Message"),
         max_length=300
     )
-
     driver_rating = models.PositiveSmallIntegerField(
         _("Driver rating")
     )

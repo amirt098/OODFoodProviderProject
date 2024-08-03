@@ -9,19 +9,16 @@ class Provider(models.Model):
         _("Provider UID"),
         unique=True
     )
-
     manager = models.OneToOneField(
         User, 
         verbose_name=_("User"), 
         related_name="provider", 
         on_delete=models.CASCADE
     )
-    
     name = models.CharField(
         _("Name"), 
         max_length=50
     )
-
     is_available = models.BooleanField(
         _("Is available"), 
         default=False
@@ -38,7 +35,6 @@ class Category(models.Model):
         _("Title"),
         max_length=50
     )
-
     parent = models.ForeignKey(
         'self',
         verbose_name=_("parent"),
