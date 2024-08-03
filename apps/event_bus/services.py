@@ -1,7 +1,8 @@
 import logging
 from django.db import IntegrityError
-from utils.date_time import interfaces as date_time_interfaces
-from apps.accounts.interfaces import UserClaim
+from apps.accounts.data_classes import UserClaim
+from django.utils import timezone
+
 from . import interfaces
 from .models import EventOrCommand
 
@@ -12,10 +13,8 @@ class EventBus(interfaces.AbstractEventBus):
     def __init__(
             self,
             claim: UserClaim,
-            date_time_utils: date_time_interfaces.AbstractDateTimeUtils,
     ):
         self.claim = claim
-        self.date_time_utils = date_time_utils
         self.subscribers = []
 
     def emit(self, caller: UserClaim, event_or_command: interfaces.EventOrCommand):
@@ -23,10 +22,10 @@ class EventBus(interfaces.AbstractEventBus):
         try:
             EventOrCommand.objects.create(
                 uid=event_or_command.uid,
-                emitter_uid=caller.user_uid,
+                emitter_uid=caller.uid,
                 event_type=event_or_command.event_type,
                 payload_json=event_or_command.payload.model_dump_json(),
-                created_at=self.date_time_utils.get_current_timestamp(),
+                created_at=timezone.now(),
             )
             for subscriber in self.subscribers:
                 logger.debug(f"subscriber: {subscriber}")
