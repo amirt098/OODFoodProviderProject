@@ -81,7 +81,7 @@ class ProviderService(AbstractProviderService):
             in_stock=product.in_stock,
             image_path=product.image_path,
             categoty_uid=product.categoty.uid,
-        ) for product in Product.objects.filter(**ProductFilter)]
+        ) for product in Product.objects.filter(**filter)]
     
     def create_category(self, category: CategoryInfo) -> None:
         category = Category.objects.create(
