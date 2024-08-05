@@ -7,6 +7,8 @@ from .abstraction import AbstractDriverService
 from .models import Driver
 from .data_classes import DriverInfo, DriverList, DriverFilter
 from .exceptions import UIDNotFound  # Assuming you have a custom exception defined
+from ..accounts.models import User
+
 
 class DriverService(AbstractDriverService):
     def get_driver(self, uid: str) -> DriverInfo:

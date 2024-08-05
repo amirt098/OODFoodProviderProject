@@ -85,6 +85,18 @@ class AbstractUserService(abc.ABC):
         """
         raise NotImplementedError()
 
+    def get_info_by_id(self, uid: str) -> UserInfo:
+        """
+        Get user information.
+        Args:
+            uid (str): uid of the user
+        Raise:
+            UIDNotFound: If the user uid is not found
+        Return:
+            UserInfo: User information
+        """
+        raise NotImplementedError()
+
     @abc.abstractmethod
     def get_full_name(self, username: str) -> str:
         """

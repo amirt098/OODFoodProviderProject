@@ -27,10 +27,10 @@ urlpatterns = [
     # path('', main_page_view, name='main_page'),
     path('admin/', admin.site.urls),
     path('', include('frontend.urls')),
-    # path('cart/', include('cart.urls')),   # Cart app
+    path('cart/', include('apps.cart.urls')),   # Cart app
     # path('orders/', include('order.urls')), # Order app
     path('account/', include('apps.accounts.urls')), # Account app
-    # path('provider/', include('provider.urls')), # Provider app
+    path('pr/', include('apps.provider.urls')), # Provider app
     # path('driver/', include('driver.urls')),   # Driver app
 
 ]

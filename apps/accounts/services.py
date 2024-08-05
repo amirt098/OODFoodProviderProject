@@ -134,3 +134,6 @@ class UserService(AbstractUserService):
 
     def get_user_id(self, uid: str):
         return User.objects.get(uid=uid).id
+
+    # def get_info_by_id(self, uid: str) -> UserInfo:
+    #

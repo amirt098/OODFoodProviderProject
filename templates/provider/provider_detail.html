@@ -1,0 +1,70 @@
+<!-- templates/provider/provider_detail.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Provider Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        {{ provider.name }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Manager: {{ provider.manager.username }}</h5>
+        <p class="card-text"><strong>UID:</strong> {{ provider.uid }}</p>
+        <p class="card-text"><strong>Availability:</strong> {{ provider.is_available|yesno:"Available,Not Available" }}</p>
+        <a href="{% url 'provider-update' provider.id %}" class="btn btn-primary">Edit</a>
+        <form action="{% url 'provider-destroy' provider.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>
+
+{#<h2>Products</h2>#}
+{#<ul>#}
+{#    {% for product in provider.products.all %}#}
+{#        <li>#}
+{#            <a href="{% url 'product-detail' product.id %}">{{ product.title }}</a>#}
+{#            <a href="{% url 'product-update' product.id %}" class="btn btn-secondary btn-sm">Edit</a>#}
+{#            <form action="{% url 'product-destroy' product.id %}" method="post" style="display:inline;">#}
+{#                {% csrf_token %}#}
+{#                <button type="submit" class="btn btn-danger btn-sm">Delete</button>#}
+{#            </form>#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+
+<h2>Provider: {{ provider.name }}</h2>
+
+<h3>Products:</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>In Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.title }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.in_stock }}</td>
+            <td>
+                <form method="post" action="{% url 'add-to-cart' product.uid %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'product-create' %}" class="btn btn-primary">Add Product</a>
+
+{% endblock %}
+

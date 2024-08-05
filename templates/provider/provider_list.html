@@ -1,0 +1,18 @@
+<!-- templates/provider/provider_list.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Providers</h1>
+<a href="{% url 'provider-list' %}">Create New Provider</a>
+<ul>
+    {% for provider in providers %}
+        <li>
+            <a href="{% url 'provider-detail' provider.id %}">{{ provider.name }}</a>
+            <a href="{% url 'provider-update' provider.id %}">Edit</a>
+            <form action="{% url 'provider-destroy' provider.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

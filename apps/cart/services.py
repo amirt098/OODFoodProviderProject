@@ -28,30 +28,6 @@ class CartService(AbstractCartService):
         self.orders_service = orders_service
 
 
-
-    # def create_cart(self, input: data_classes.CreateCartInput) -> data_classes.CartOutput:
-    #     cart = Cart.objects.create(
-    #         user_id=input.user_uid,
-    #         provider_id=input.provider_uid,
-    #         address_id=input.address_uid,
-    #         footnote=input.footnote
-    #     )
-    #     for item in input.items:
-    #         CartItem.objects.create(
-    #             order=cart,
-    #             product_id=item.product_uid,
-    #             quantity=item.quantity
-    #         )
-    #     return data_classes.CartOutput(
-    #         uid=cart.uid,
-    #         user_uid=cart.user_id,
-    #         created=cart.created.timestamp(),
-    #         footnote=cart.footnote,
-    #         address_uid=cart.address_id,
-    #         provider_uid=cart.provider_id,
-    #         items=[data_classes.CartItemInfo(product_uid=item.product_id, quantity=item.quantity) for item in cart.items.all()]
-    #     )
-
     def get_cart(self, uid: str) -> CartInfo:
         try:
             cart = Cart.objects.get(uid=uid)
@@ -88,8 +64,7 @@ class CartService(AbstractCartService):
                 uid=cart_uid,
                 defaults={
                     "user_id": user_uid,
-                    "provider_id": product_uid,
-                    "address_id": self.accounts_service.get_addresses(self.accounts_service.get_info(user_uid))
+                    "provider_id": product_uid
                 })
             product = Product.objects.get(uid=product_uid)
             cart_item, created = CartItem.objects.get_or_create(

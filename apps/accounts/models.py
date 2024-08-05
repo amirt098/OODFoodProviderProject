@@ -11,19 +11,14 @@ class UserRole(models.TextChoices):
     PROVIDER_MANAGER = 'PROVIDER_MANAGER', 'Provider Manager'
 
 
-class User(AbstractBaseUser):
+class User(AbstractUser):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=20, choices=UserRole.choices, default=UserRole.CUSTOMER)
     uid = models.CharField(unique=True, max_length=120)
-    username = models.CharField(unique=True, max_length=30)
-    email = models.EmailField()
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
     created_at = models.BigIntegerField(blank=True, null=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True)
 
-    USERNAME_FIELD = 'username'
+    groups = models.ManyToManyField(Group, related_name='accounts_user_groups', blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name='accounts_user_permissions', blank=True)
 
 
 class Address(models.Model):

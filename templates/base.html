@@ -20,6 +20,9 @@
                 <li class="nav-item"><a class="nav-link active" href="{% url 'frontend-home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" href="{% url 'frontend-about' %}">About Us</a></li>
                 <li class="nav-item"><a class="nav-link active" href="{% url 'frontend-contact' %}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'frontend-contact' %}">Providers</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'product-list' %}">Products</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'provider-list' %}">Providers</a></li>
 
                 {% if request.user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link active" href="{% url 'accounts-profile' %}">Profile</a></li>

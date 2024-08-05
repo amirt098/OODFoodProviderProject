@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Orders</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>User</th>
+            <th>Provider</th>
+            <th>Created</th>
+            <th>State</th>
+            <th>Footnote</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.uid }}</td>
+            <td>{{ order.user }}</td>
+            <td>{{ order.provider }}</td>
+            <td>{{ order.created }}</td>
+            <td>{{ order.state }}</td>
+            <td>{{ order.footnote }}</td>
+            <td>
+                <a href="{% url 'order_detail' order.uid %}">View</a> |
+                <a href="{% url 'order_update' order.uid %}">Update</a> |
+                <a href="{% url 'add_review' order.uid %}">Add Review</a> |
+                <a href="{% url 'set_driver' order.uid %}">Set Driver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

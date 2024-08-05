@@ -17,7 +17,7 @@ class ProductInfo:
     in_stock: int
     image_path: str
     categoty_uid: str
-    # uid: int | None = None
+    uid: int | None = None
 
 
 @dataclasses.dataclass

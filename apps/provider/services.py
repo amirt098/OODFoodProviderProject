@@ -1,5 +1,6 @@
 from typing import List
 
+from apps.accounts.models import User
 from apps.provider.abstraction import AbstractProviderService
 from apps.provider.models import (
     Provider,
@@ -9,11 +10,19 @@ from apps.provider.models import (
 from apps.provider.data_classes import (
     ProductInfo,
     CategoryInfo,
-    ProductFilter,
+    ProductFilter, ProviderInfo,
 )
 
 
 class ProviderService(AbstractProviderService):
+
+    def create_provider(self, provider: ProviderInfo):
+        Provider.objects.create(
+            name=provider.name,
+            uid=provider.uid,
+            manager=User.objects.get(uid=provider.manager_uid),
+            is_active=provider.is_available
+        )
 
     def get_provider_id(self, uid: str):
         return Provider.objects.get(uid=uid).id
@@ -82,7 +91,7 @@ class ProviderService(AbstractProviderService):
             in_stock=product.in_stock,
             image_path=product.image_path,
             categoty_uid=product.categoty.uid,
-        ) for product in Product.objects.filter(**filter)]
+        ) for product in Product.objects.filter(**filter.__dict__)]
     
     def create_category(self, category: CategoryInfo) -> None:
         category = Category.objects.create(

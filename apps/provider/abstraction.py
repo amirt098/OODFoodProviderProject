@@ -1,6 +1,6 @@
 import abc
 from typing import List
-from .data_classes import ProductInfo, CategoryInfo, ProductFilter
+from .data_classes import ProductInfo, CategoryInfo, ProductFilter, ProviderInfo
 
 
 class AbstractProviderService(abc.ABC):
@@ -131,16 +131,27 @@ class AbstractProviderService(abc.ABC):
         Args:
             filter (ProductFilter): filter class for product
         Return:
-            List of ProductInfo: List of product informations
+            List of ProductInfo: List of product information
         """
         raise NotImplementedError()
 
     @abc.abstractmethod
     def create_category(self, category: CategoryInfo) -> None:
         """
-        Get products matching the given filter
+        Create Category
         Args:
             category (CategoryInfo): Category data class
+        Return:
+            None
+        """
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def create_provider(self, provider: ProviderInfo) -> None:
+        """
+        Create Provider
+        Args:
+            provider (CategoryInfo): provider data class
         Return:
             None
         """

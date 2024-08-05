@@ -21,7 +21,8 @@ class Order(TrackingTimeStampMixin):
 
     uid = models.CharField(
         _("Order UID"),
-        unique=True
+        unique=True,
+        max_length=255,
     )
     state = models.CharField(
         _("Status"),
@@ -90,7 +91,9 @@ class OrderItem(models.Model):
 class Review(TrackingTimeStampMixin):
     uid = models.CharField(
         _("Review UID"),
-        unique=True
+        unique=True,
+        max_length=255,
+
     )
     user = models.ForeignKey(
         User,

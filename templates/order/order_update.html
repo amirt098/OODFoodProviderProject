@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Update Order: {{ order.uid }}</h1>
+<form method="post" action="{% url 'update_order' order.uid %}">
+    {% csrf_token %}
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" value="{{ order.state }}" required><br>
+    <label for="footnote">Footnote:</label>
+    <textarea id="footnote" name="footnote">{{ order.footnote }}</textarea><br>
+    <button type="submit">Update Order</button>
+</form>
+{% endblock %}

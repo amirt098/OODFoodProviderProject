@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Order Detail: {{ order.uid }}</h1>
+<p><strong>User:</strong> {{ order.user }}</p>
+<p><strong>Provider:</strong> {{ order.provider }}</p>
+<p><strong>Created:</strong> {{ order.created }}</p>
+<p><strong>State:</strong> {{ order.state }}</p>
+<p><strong>Footnote:</strong> {{ order.footnote }}</p>
+
+<h2>Order Items</h2>
+<ul>
+    {% for item in order.order_items %}
+    <li>
+        Product: {{ item.product_uid }} - Price: {{ item.price }} - Quantity: {{ item.quantity }}
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Reviews</h2>
+<ul>
+    {% for review in order.reviews %}
+    <li>
+        User: {{ review.user }} - Rating: {{ review.reting }} - Message: {{ review.message }} - Driver Rating: {{ review.driver_rating }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cart List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>UID</th>
+            <th>User</th>
+            <th>Provider</th>
+            <th>Address</th>
+            <th>Footnote</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cart in carts %}
+        <tr>
+            <td>{{ cart.uid }}</td>
+            <td>{{ cart.user.username }}</td>
+            <td>{{ cart.provider.name }}</td>
+            <td>{{ cart.address.address_line }}</td>
+            <td>{{ cart.footnote }}</td>
+            <td>
+                <a href="{% url 'cart-update' cart.pk %}" class="btn btn-warning">Edit</a>
+                <form method="post" action="{% url 'cart-delete' cart.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'cart-create' %}" class="btn btn-primary">Add Cart</a>
+{% endblock %}

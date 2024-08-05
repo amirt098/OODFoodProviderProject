@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create New Order</h1>
+<form method="post" action="{% url 'create_order' %}">
+    {% csrf_token %}
+    <label for="uid">Order ID:</label>
+    <input type="text" id="uid" name="uid" required><br>
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required><br>
+    <label for="footnote">Footnote:</label>
+    <textarea id="footnote" name="footnote"></textarea><br>
+    <label for="user_uid">User ID:</label>
+    <input type="text" id="user_uid" name="user_uid" required><br>
+    <label for="provider_uid">Provider ID:</label>
+    <input type="text" id="provider_uid" name="provider_uid" required><br>
+    <label for="order_items">Order Items (JSON format):</label>
+    <textarea id="order_items" name="order_items" required></textarea><br>
+    <button type="submit">Create Order</button>
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Product List</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>UID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>In Stock</th>
+            <th>Provider</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.uid }}</td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.in_stock }}</td>
+                <td>{{ product.provider.name }}</td>
+                <td>{{ product.category.title }}</td>
+                <td>
+                    <form method="post" action="{% url 'add-to-cart' product.uid %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                    <a href="{% url 'product-update' product.pk %}" class="btn btn-warning">Edit</a>
+                    <form method="post" action="{% url 'product-delete' product.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'product-create' %}" class="btn btn-primary">Add Product</a>
+{% endblock %}

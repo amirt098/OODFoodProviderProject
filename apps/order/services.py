@@ -1,5 +1,6 @@
 from typing import List
 
+from apps.accounts.abstraction import AbstractUserService
 from apps.logistic.models import Driver
 from apps.order.abstraction import AbstractOrderService
 from apps.order.models import (
@@ -9,18 +10,22 @@ from apps.order.models import (
 )
 from apps.order.data_classes import (
     OrderInfo,
-    OrderFilter, 
+    OrderFilter,
     OrderItemInfo,
 )
-from apps.accounts.services import AccountService
-from apps.provider.services import ProviderService
+from apps.provider.abstraction import AbstractProviderService
 
 
 class OrderService(AbstractOrderService):
 
-    account_service = AccountService()
-    provider_service = ProviderService()
-    
+    def __init__(
+            self,
+            account_service: AbstractUserService,
+            provider_service: AbstractProviderService
+    ):
+        self.account_service = account_service
+        self.provider_service = provider_service
+
     def create_order(self, orderinfo: OrderInfo):  # -> Order
         order = Order.objects.create(
             uid=orderinfo.uid,
@@ -48,7 +53,7 @@ class OrderService(AbstractOrderService):
             state=order.state,
             footnote=order.footnote,
             order_items=self.get_items(order.uid),
-        ) for order in Order.objects.filter(**filters)]
+        ) for order in Order.objects.filter(**filters.__dict__)]
 
     def get_order(self, uid: str) -> OrderInfo:
         order = Order.objects.get(uid=uid)
@@ -61,7 +66,7 @@ class OrderService(AbstractOrderService):
             footnote=order.footnote,
             order_items=self.get_items(uid),
         )
-    
+
     def change_state(self, uid: str, state: str) -> None:
         order = Order.objects.get(uid=uid)
         order.state = state
@@ -79,18 +84,18 @@ class OrderService(AbstractOrderService):
 
     def set_driver(self, deriver_uid: str, order_uid: str) -> None:
         order = Order.objects.get(uid=order_uid)
-        #TODO: fix after implementing driver_service
+        # TODO: fix after implementing driver_service
         order.driver = Driver.objects.get(uid=deriver_uid)
         order.save()
 
     def get_items(self, uid: str):
         order = Order.objects.get(uid=uid)
         return [OrderItemInfo(
-                product_uid = item.product.uid,
-                price = item.price,
-                quantity = item.quantity,
+            product_uid=item.product.uid,
+            price=item.price,
+            quantity=item.quantity,
         ) for item in order.products]
-    
+
     def accept_order(self, uid: str) -> None:
         order = Order.objects.get(uid=uid)
         order.state = Order.OrderStates.prossesing
@@ -105,7 +110,7 @@ class OrderService(AbstractOrderService):
         order = Order.objects.get(uid=uid)
         order.state = Order.OrderStates.delivered
         order.save()
-        
+
     def declare_not_received(self, uid: str) -> None:
         order = Order.objects.get(uid=uid)
         order.state = Order.OrderStates.shipped
@@ -113,7 +118,3 @@ class OrderService(AbstractOrderService):
 
     def get_reviews(self, uid: str) -> List[Review]:
         return list(Order.objects.get(uid=uid).reviews)
-    
-
-
-

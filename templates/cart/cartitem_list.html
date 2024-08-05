@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cart Item List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cartitems %}
+        <tr>
+            <td>{{ item.product.title }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.get_total_order_product_price }}</td>
+            <td>
+                <a href="{% url 'cartitem-update' item.pk %}" class="btn btn-warning">Edit</a>
+                <form method="post" action="{% url 'cartitem-delete' item.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'cartitem-create' %}" class="btn btn-primary">Add Cart Item</a>
+{% endblock %}

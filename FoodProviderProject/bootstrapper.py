@@ -7,6 +7,11 @@ from apps.provider.abstraction import AbstractProviderService
 from apps.logistic.abstraction import AbstractDriverService
 from apps.cart.abstraction import AbstractCartService
 
+from apps.order.services import OrderService
+from apps.provider.services import ProviderService
+from apps.logistic.services import DriverService
+from apps.cart.services import CartService
+
 logger = logging.getLogger(__name__)
 
 
@@ -40,9 +45,21 @@ class Bootstrapper(Borg):
 
             self._cart_service = kwargs.get('cart_service',
                                             None)
-            self._orders_service = kwargs.get('orders_service', None)
-            self._logins_service = kwargs.get('logins_service', None)
-            self._provider_service = kwargs.get('provider_service', None)
+
+            self._logins_service = kwargs.get(
+                'logins_service',
+                DriverService(
+                ))
+            self._provider_service = kwargs.get(
+                'provider_service',
+                ProviderService()
+            )
+            self._orders_service = kwargs.get(
+                'orders_service',
+                OrderService(
+                    account_service=self._accounts_service,
+                    provider_service=self._provider_service
+                ))
             self._initialized = True  # Mark as initialized
 
     def get_accounts_service(self) -> AbstractUserService:
